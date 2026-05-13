@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -1274,10 +1274,16 @@
       ctx.fillStyle = nightMode ? "rgba(8, 12, 24, 0.48)" : "rgba(95, 57, 37, 0.38)";
       ctx.fillRect(0, 0, sideWall, H);
       ctx.fillRect(W - sideWall, 0, sideWall, H);
-      ctx.fillStyle = nightMode ? "rgba(240, 195, 90, 0.58)" : "rgba(255, 248, 236, 0.75)";
-      for (let y = 0; y < H; y += 56) {
-        ctx.fillRect(8, y, 16, 30);
-        ctx.fillRect(W - 24, y + 22, 16, 30);
+      ctx.strokeStyle = nightMode ? "rgba(240, 195, 90, 0.3)" : "rgba(255, 248, 236, 0.24)";
+      ctx.lineWidth = 3;
+      ctx.lineCap = "round";
+      for (let y = 8; y < H; y += 38) {
+        ctx.beginPath();
+        ctx.moveTo(14, y);
+        ctx.lineTo(14, y + 18);
+        ctx.moveTo(W - 14, y + 18);
+        ctx.lineTo(W - 14, y + 36);
+        ctx.stroke();
       }
       drawSideTinsel();
 
@@ -1984,3 +1990,4 @@
   </script>
 </body>
 </html>
+
