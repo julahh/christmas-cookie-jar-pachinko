@@ -313,9 +313,13 @@
         linear-gradient(180deg, #35456f, #16203b);
     }
 
+    .board-area {
+      width: min(100%, 690px);
+    }
+
     .board-shell {
       position: relative;
-      width: min(100%, 690px);
+      width: 100%;
       aspect-ratio: 0.76;
       min-height: 540px;
       padding: 32px 26px 34px;
@@ -422,6 +426,81 @@
       touch-action: none;
     }
 
+    .board-controls {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      width: min(100%, 620px);
+      margin: 18px auto 0;
+      padding: 10px;
+      border: 3px solid rgba(95, 57, 37, 0.18);
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 20px 18px, rgba(240,195,90,0.34) 0 5px, transparent 6px),
+        linear-gradient(180deg, rgba(255,248,236,0.78), rgba(217,245,239,0.66));
+      box-shadow: inset 0 0 18px rgba(255,255,255,0.48), 0 10px 22px rgba(95,57,37,0.14);
+    }
+
+    .board-controls button {
+      color: #fff8ec;
+      background:
+        radial-gradient(circle at 34% 26%, rgba(255,255,255,0.5) 0 6px, transparent 7px),
+        linear-gradient(180deg, #2a8b64, #1f7356);
+      box-shadow:
+        inset 0 -6px 0 rgba(7, 60, 49, 0.42),
+        0 0 0 3px rgba(255,248,236,0.92),
+        0 0 18px rgba(168, 221, 210, 0.85),
+        0 0 30px rgba(31, 115, 86, 0.48);
+      animation: controlGlow 1.45s ease-in-out infinite alternate;
+    }
+
+    .board-controls #shake {
+      color: #4b2c1e;
+      background:
+        radial-gradient(circle at 34% 26%, rgba(255,255,255,0.54) 0 6px, transparent 7px),
+        linear-gradient(180deg, #f7d972, #f0c35a);
+      box-shadow:
+        inset 0 -6px 0 rgba(143, 92, 49, 0.35),
+        0 0 0 3px rgba(255,248,236,0.94),
+        0 0 20px rgba(240, 195, 90, 0.95),
+        0 0 34px rgba(240, 195, 90, 0.58);
+    }
+
+    .board-controls button:hover,
+    .board-controls button:focus-visible {
+      filter: brightness(1.12);
+      box-shadow:
+        inset 0 -5px 0 rgba(7, 60, 49, 0.32),
+        0 0 0 4px rgba(255,248,236,0.96),
+        0 0 24px rgba(168, 221, 210, 1),
+        0 0 44px rgba(31, 115, 86, 0.72);
+    }
+
+    @keyframes controlGlow {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-1px);
+      }
+    }
+
+    body.night .board-controls {
+      border-color: rgba(255,248,236,0.22);
+      background:
+        radial-gradient(circle at 20px 18px, rgba(240,195,90,0.22) 0 5px, transparent 6px),
+        linear-gradient(180deg, rgba(35,42,67,0.82), rgba(20,24,40,0.78));
+    }
+
+    body.night .board-controls button {
+      box-shadow:
+        inset 0 -6px 0 rgba(8, 12, 24, 0.45),
+        0 0 0 3px rgba(255,248,236,0.82),
+        0 0 22px rgba(168, 221, 210, 0.95),
+        0 0 42px rgba(240, 195, 90, 0.34);
+    }
+
     .hint {
       margin-top: 14px;
       color: #5f3925;
@@ -431,6 +510,17 @@
       background: rgba(255, 248, 236, 0.66);
       border: 2px solid rgba(95, 57, 37, 0.2);
       box-shadow: inset 0 0 16px rgba(255,255,255,0.42);
+    }
+
+    .copyright {
+      margin: 10px 0 0;
+      color: rgba(95, 57, 37, 0.78);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    body.night .copyright {
+      color: rgba(255, 248, 236, 0.72);
     }
 
     @media (max-width: 880px) {
@@ -443,16 +533,19 @@
       }
 
       .side {
-        order: 2;
+        order: 1;
         width: min(100%, 690px);
         margin-inline: auto;
       }
 
-      .board-shell {
-        order: 1;
+      .board-area {
+        order: 2;
         margin-inline: auto;
-        min-height: 480px;
         width: min(100%, 620px);
+      }
+
+      .board-shell {
+        min-height: 480px;
       }
 
       .stats {
@@ -489,6 +582,10 @@
 
       .side::before {
         inset: 7px;
+      }
+
+      .side .tagline {
+        display: none;
       }
 
       .tagline {
@@ -534,7 +631,7 @@
       .board-shell {
         width: min(100%, 430px);
         min-height: 0;
-        height: min(68svh, 560px);
+        height: min(62svh, 520px);
         max-height: 580px;
         padding: 18px 14px 18px;
         box-shadow:
@@ -542,6 +639,13 @@
           0 0 0 5px rgba(60, 92, 86, 0.72),
           0 0 20px rgba(168, 221, 210, 0.28),
           0 18px 42px rgba(0, 0, 0, 0.52);
+      }
+
+      .board-controls {
+        width: min(100%, 430px);
+        margin-top: 10px;
+        gap: 7px;
+        padding: 8px;
       }
 
       .board-shell::before {
@@ -579,6 +683,11 @@
         padding: 8px 9px;
         font-size: 0.76rem;
         line-height: 1.25;
+      }
+
+      .copyright {
+        margin-top: 7px;
+        font-size: 0.72rem;
       }
     }
 
@@ -618,25 +727,30 @@
         </div>
         <div class="stat">
           <span>Dough</span>
-          <strong id="cookies">12</strong>
+          <strong id="cookies">40</strong>
         </div>
       </div>
       <div class="controls">
         <button id="drop">Drop Cookie</button>
         <button class="secondary" id="auto">Auto Drop</button>
-        <button class="secondary" id="tiltLeft">Tilt Left</button>
-        <button class="secondary" id="tiltRight">Tilt Right</button>
-        <button class="secondary" id="shake">Shake Board</button>
         <button class="secondary" id="night">Night Jar</button>
         <button class="secondary" id="sound">Sound On</button>
         <button class="secondary" id="share">Share Game</button>
         <button class="secondary" id="reset">New Batch</button>
       </div>
       <p class="hint">Golden cookies and glowing stockings give bonus points. Tap the jar to aim and drop.</p>
+      <p class="copyright">&copy; 2026 Tauren Games Studios</p>
     </section>
 
-    <section class="board-shell" aria-label="Christmas cookie pachinko board">
-      <canvas id="game" width="760" height="1000"></canvas>
+    <section class="board-area" aria-label="Christmas cookie pachinko board">
+      <div class="board-shell">
+        <canvas id="game" width="760" height="1000"></canvas>
+      </div>
+      <div class="board-controls" aria-label="Board movement controls">
+        <button class="secondary" id="tiltLeft">Tilt Left</button>
+        <button class="secondary" id="shake">Shake Board</button>
+        <button class="secondary" id="tiltRight">Tilt Right</button>
+      </div>
     </section>
   </main>
 
@@ -677,7 +791,8 @@
 
     let score = 0;
     let best = Number(localStorage.getItem("cookiePachinkoBest") || 0);
-    let cookies = 12;
+    const startingDough = 40;
+    let cookies = startingDough;
     let dropX = W / 2;
     let balls = [];
     let sparkles = [];
@@ -860,7 +975,7 @@
     function newBatch() {
       playResetSound();
       score = 0;
-      cookies = 12;
+      cookies = startingDough;
       balls = [];
       sparkles = [];
       autoDrop = false;
@@ -1869,4 +1984,3 @@
   </script>
 </body>
 </html>
-
